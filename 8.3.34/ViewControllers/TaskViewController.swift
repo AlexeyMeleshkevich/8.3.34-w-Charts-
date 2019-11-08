@@ -1,22 +1,16 @@
-//
-//  TaskViewController.swift
-//  8.3.34
-//
-//  Created by Alexey Meleshkevich on 03/11/2019.
-//  Copyright © 2019 Alexey Meleshkevich. All rights reserved.
-//
-
 import UIKit
+import RealmSwift
 
 class TaskViewController: UIViewController {
-
+    
     let textLabel1 = UILabel()
     let textLabel2 = UILabel()
     let textLabel3 = UILabel()
-    
     var resultLabel = UILabel()
     var textField1 = UITextField()
     var textField2 = UITextField()
+
+    var values: Results<Values>!
     
     var countButton = UIButton(type: .roundedRect)
     
@@ -33,23 +27,16 @@ class TaskViewController: UIViewController {
         createTextField2()
         createCountButton()
         
-    
-        
         countButton.addTarget(self, action: #selector(countButtonPressed), for: .touchDown)
-        
-        
-        
     }
     
     @objc func countButtonPressed(sender: UIButton){
-        
-        if textField1.text == "" || textField2.text == "" {
+        if textField1.text!.isEmpty || textField2.text!.isEmpty {
             if textField1.text == ""{
-            let alert = UIAlertController(title: "", message: "Enter R", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "Ok", style: .cancel)
-            alert.addAction(alertAction)
+                let alert = UIAlertController(title: Constants.EMPTY_STRING, message: "Enter R", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "Ok", style: .cancel)
+                alert.addAction(alertAction)
                 present(alert, animated: true)
-                
             }
             if textField2.text == ""{
                 let alert = UIAlertController(title: "", message: "Enter I", preferredStyle: .alert)
@@ -60,21 +47,23 @@ class TaskViewController: UIViewController {
             }
             
         } else {
-        calculateResult()
+            let resistance = Double(textField1.text!)
+            let amperage = Double(textField2.text!)
+            let result = calculateResult()
+            
+            let newData = Values(resistance: resistance!, amperage: amperage!, result: result)
+            StorageManager.saveData(values: newData)
         }
         
     }
-
     func createResultLabel(){
-        
         let frame = CGRect(x: 150, y: 300, width: 300, height: 20)
         resultLabel.frame = frame
         view.addSubview(resultLabel)
-        
     }
     
     func createCountButton(){
-        let frame = CGRect(x: 185, y: 200, width: 80, height: 50)
+        let frame = CGRect(x: 185, y: 250, width: 80, height: 50)
         countButton.frame = frame
         
         countButton.setTitle("Count", for: .normal)
@@ -83,7 +72,6 @@ class TaskViewController: UIViewController {
         countButton.sizeToFit()
         view.addSubview(countButton)
     }
-    
     // MARK: VALUE LABELS
     func createTextLabel1(){
         textLabel1.text = "R ="
@@ -101,16 +89,13 @@ class TaskViewController: UIViewController {
     }
     
     func createTextLabel3(){
-        
     let frame = CGRect(x: 30, y: 300, width: 100, height: 20)
         textLabel3.frame = frame
-        textLabel3.text = "Max power  = "
+        textLabel3.text = Constants.MAX_POWER_STRING
         textLabel3.sizeToFit()
         view.addSubview(textLabel3)
     }
     // mark end
-    
-    
     // MARK: ENTER VALUE FIELDS
     func createTextField1(){
         let frameText = CGRect(x: 65, y: 100, width: 130, height: 25)
@@ -129,24 +114,11 @@ class TaskViewController: UIViewController {
     }
     //mark end
     
-    func calculateResult(){
-        
-        
-        var result: Double
-        var resistance: Double = 0
-        var amperage: Double = 0
-        
-        if let r = Double(textField1.text!){
-            resistance = r
-        }
-        if let i = Double(textField2.text!){
-            amperage = i
-        }
-        
-        result = pow(amperage,2) * resistance
-        
+    func calculateResult() -> Double {
+        let resistance = Double(textField1.text!)!
+        let amperage = Double(textField2.text!)!
+        let result: Double = pow(amperage,2) * resistance
         resultLabel.text = String(result)
+        return result
     }
-
-
 }

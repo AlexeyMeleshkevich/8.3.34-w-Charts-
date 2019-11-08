@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import RealmSwift
 
 class ChartViewController: UIViewController {
     
@@ -21,9 +22,9 @@ class ChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        createResistanceField()
-        createAmperageField()
+//        updateChartData()
+//        createResistanceField()
+//        createAmperageField()
         
     }
     
@@ -40,15 +41,15 @@ class ChartViewController: UIViewController {
     func createAmperageField(){
         let frameText = CGRect(x: 65, y: 100, width: 250, height: 25)
         enterAmperage = UITextField(frame: frameText)
-        
         enterAmperage.placeholder = "enter I start value"
         enterAmperage.borderStyle = .roundedRect
-        
         view.addSubview(enterAmperage)
     }
-    
-    func updateChartData(){
-        
-    }
-
+//
+//    func updateChartData(){
+//        let realm = try! Realm()
+//        let results = realm.objects(Values.self)
+//        let resultsArray = [Double]()
+//        results[0].result =
+//    }
 }

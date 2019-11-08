@@ -7,14 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
-    
-    
         let taskButton = UIButton(type: .roundedRect)
         let chartButton = UIButton(type: .roundedRect)
         let optionLabel = UILabel()
-        let saveToFileButton = UIButton()
+        let refreshStorageButton = UIButton(type: .roundedRect)
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -24,7 +23,7 @@ class MainViewController: UIViewController {
             createTaskButton()
             createChartButton()
             createOptionLabel()
-            createSaveToFileButton()
+            createRefreshStorageButton()
             
             taskButton.addTarget(self,
                                  action: #selector(taskButtonAction(sender:)),
@@ -32,6 +31,9 @@ class MainViewController: UIViewController {
             chartButton.addTarget(self,
                                   action: #selector(chartButtonAction(sender:)),
                                   for: .touchUpInside)
+            refreshStorageButton.addTarget(self,
+                                           action: #selector(refreshButtonAction(sender:)),
+                                           for: .touchUpInside)
             
             }
     
@@ -72,15 +74,15 @@ class MainViewController: UIViewController {
             view.addSubview(chartButton)
         }
     
-        func createSaveToFileButton(){
-            let frame = CGRect(x: 160, y: 400, width: 100, height: 40)
-            saveToFileButton.frame = frame
+        func createRefreshStorageButton(){
+            let frame = CGRect(x: 160, y: 400, width: 100, height: 30)
+            refreshStorageButton.frame = frame
             
-            saveToFileButton.setTitle("Save to file", for: .normal)
-            saveToFileButton.setTitleColor(.blue, for: .normal)
+            refreshStorageButton.setTitle("Refresh file", for: .normal)
+            refreshStorageButton.setTitleColor(.blue, for: .normal)
             
-            saveToFileButton.sizeToFit()
-            view.addSubview(saveToFileButton)
+            refreshStorageButton.sizeToFit()
+            view.addSubview(refreshStorageButton)
         }
     
         // MARK: BUTTON ACTIONS
@@ -100,6 +102,12 @@ class MainViewController: UIViewController {
             
         }
     
-        // Mark end
-
+    @objc func refreshButtonAction(sender: Any){
+        let realm = try! Realm()
+        try! realm.write(){
+            realm.deleteAll()
+        }
     }
+        // Mark end
+    
+}
