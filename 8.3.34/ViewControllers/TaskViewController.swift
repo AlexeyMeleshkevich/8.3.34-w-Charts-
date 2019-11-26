@@ -9,10 +9,9 @@ class TaskViewController: UIViewController {
     var resultLabel = UILabel()
     var textField1 = UITextField()
     var textField2 = UITextField()
-
-    var values: Results<Values>!
-    
     var countButton = UIButton(type: .roundedRect)
+    
+    var values: Results<Values>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +26,24 @@ class TaskViewController: UIViewController {
         createTextField2()
         createCountButton()
         
+        view.backgroundColor = UIColor.white
+        
         countButton.addTarget(self, action: #selector(countButtonPressed), for: .touchDown)
     }
     
     @objc func countButtonPressed(sender: UIButton){
         if textField1.text!.isEmpty || textField2.text!.isEmpty {
-            if textField1.text == ""{
+            if textField1.text!.isEmpty {
                 let alert = UIAlertController(title: Constants.EMPTY_STRING, message: "Enter R", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Ok", style: .cancel)
                 alert.addAction(alertAction)
                 present(alert, animated: true)
             }
-            if textField2.text == ""{
-                let alert = UIAlertController(title: "", message: "Enter I", preferredStyle: .alert)
+            if textField2.text!.isEmpty {
+                let alert = UIAlertController(title: Constants.EMPTY_STRING, message: "Enter I", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Ok", style: .cancel)
                 alert.addAction(alertAction)
-                    present(alert, animated: true)
+                present(alert, animated: true)
                 
             }
             
@@ -56,6 +57,7 @@ class TaskViewController: UIViewController {
         }
         
     }
+    
     func createResultLabel(){
         let frame = CGRect(x: 150, y: 300, width: 300, height: 20)
         resultLabel.frame = frame
@@ -63,16 +65,20 @@ class TaskViewController: UIViewController {
     }
     
     func createCountButton(){
-        let frame = CGRect(x: 185, y: 250, width: 80, height: 50)
+        let frame = CGRect(x: 145, y: 250, width: 120, height: 70)
         countButton.frame = frame
         
+        countButton.layer.cornerRadius = countButton.frame.size.height / 2
+        countButton.layer.borderWidth = 2
+        countButton.layer.borderColor = UIColor.blue.cgColor
         countButton.setTitle("Count", for: .normal)
         countButton.setTitleColor(.blue, for: .normal)
         
-        countButton.sizeToFit()
+//        countButton.sizeToFit()
         view.addSubview(countButton)
     }
-    // MARK: VALUE LABELS
+    
+    // MARK: - VALUE LABELS
     func createTextLabel1(){
         textLabel1.text = "R ="
         let frameText = CGRect(x: 30, y: 100, width: 20, height: 20)
@@ -89,14 +95,14 @@ class TaskViewController: UIViewController {
     }
     
     func createTextLabel3(){
-    let frame = CGRect(x: 30, y: 300, width: 100, height: 20)
+    let frame = CGRect(x: 30, y: 350, width: 100, height: 20)
         textLabel3.frame = frame
         textLabel3.text = Constants.MAX_POWER_STRING
         textLabel3.sizeToFit()
         view.addSubview(textLabel3)
     }
     // mark end
-    // MARK: ENTER VALUE FIELDS
+    // MARK: - ENTER VALUE FIELDS
     func createTextField1(){
         let frameText = CGRect(x: 65, y: 100, width: 130, height: 25)
         textField1 = UITextField(frame: frameText)

@@ -8,11 +8,12 @@
 
 import RealmSwift
 
+@objcMembers
 class Values: Object {
     
-    @objc dynamic var resistance: Double = 0.0
-    @objc dynamic var amperage: Double = 0.0
-    @objc dynamic var result: Double = 0.0
+    dynamic var resistance: Double = 0.0
+    dynamic var amperage: Double = 0.0
+    dynamic var result: Double = 0.0
     
     convenience init(resistance: Double, amperage: Double, result: Double){
         self.init()
