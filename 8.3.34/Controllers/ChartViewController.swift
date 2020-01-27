@@ -35,6 +35,7 @@ class ChartViewController: UIViewController {
         self.title = "Chart"
         self.view.backgroundColor = UIColor.white
         
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         //createAmperageLabel(sender: labelAmperage)
         //createAmperageStepLabel(sender: amperageStepLabel)
         //createEnterAmperageLabel(sender: enterAmperageField)

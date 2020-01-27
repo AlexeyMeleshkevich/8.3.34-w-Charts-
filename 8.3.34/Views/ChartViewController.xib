@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,15 +19,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hwV-CG-NMA">
-                    <rect key="frame" x="20" y="44" width="374" height="236"/>
+                    <rect key="frame" x="0.0" y="44" width="374" height="236"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="hwV-CG-NMA" firstAttribute="leading" secondItem="1sY-iQ-qLv" secondAttribute="leading" constant="20" id="QX2-rF-5rC"/>
-                <constraint firstItem="1sY-iQ-qLv" firstAttribute="trailing" secondItem="hwV-CG-NMA" secondAttribute="trailing" constant="20" id="T1y-gu-eNX"/>
-                <constraint firstItem="hwV-CG-NMA" firstAttribute="top" secondItem="1sY-iQ-qLv" secondAttribute="top" id="WMx-aj-Mch"/>
+                <constraint firstItem="hwV-CG-NMA" firstAttribute="top" secondItem="1sY-iQ-qLv" secondAttribute="top" id="9Er-dy-4iX"/>
+                <constraint firstItem="hwV-CG-NMA" firstAttribute="leading" secondItem="1sY-iQ-qLv" secondAttribute="leading" id="JhW-9M-5Pm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="1sY-iQ-qLv"/>
             <point key="canvasLocation" x="-62.318840579710148" y="168.75"/>
